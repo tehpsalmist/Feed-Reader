@@ -5,7 +5,7 @@ This web-based application reads RSS feeds. I did not write it (I believe that i
 
 ## Try It Out
 
-For a quick glance, [click here]() to see the live site.
+For a quick glance, [click here](https://tehpsalmist.github.io/Feed-Reader) to see the live site.
 
 To run it locally,
 1. `git clone https://github.com/tehpsalmist/Feed-Reader.git`, or download the zip file, and
