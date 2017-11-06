@@ -11,4 +11,4 @@ To run it locally,
 1. `git clone https://github.com/tehpsalmist/Feed-Reader.git`, or download the zip file, and
 2. open `index.html` in your browser of choice.
 
-19. Implement error handling for undefined variables and out-of-bound array access.
+# Happy Feed-Reading!
