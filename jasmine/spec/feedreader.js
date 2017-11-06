@@ -51,7 +51,7 @@ $(function() {
 
         // I preferred this version because of its simplicity and the fact
         // that the spec would reveal the exact location of the failed property.
-        allFeeds.map((feed, index) => {
+        allFeeds.forEach((feed, index) => {
             it('Feed ' + index + ' has a url string', function() {
                 expect(typeof(feed.url)).toEqual('string');
                 // making sure the string isn't empty, but also that it is likely a legit url
@@ -69,27 +69,23 @@ $(function() {
     describe('The menu', function() {
     	// I don't prefer to use jQuery, so I didn't.
         const body = window.document.body;
-        const click = new Event('click');
         const menu = document.getElementsByClassName('menu-icon-link')[0];
 
         it('is hidden by default.', function() {
             expect(body.classList).toContain('menu-hidden');
         });
 
-        it('is visible when clicked.', function() {
-            menu.dispatchEvent(click);
+        it('toggles visibility when clicked.', function() {
+            menu.click();
             expect(window.document.body.classList).not.toContain('menu-hidden');
-        });
-
-        it('is hidden when clicked again.', function() {
-            menu.dispatchEvent(click);
+            menu.click();
             expect(window.document.body.classList).toContain('menu-hidden');
         });
     });
 
     // Asynchronous behavior requires the use of Jasmine's nifty done() function
     describe('Initial Entries', function() {
-    	// This test compares the number of child elements in .feed with 0 after
+    	// This test compares the number of .entry elements in .feed with 0 after
     	// the async load is complete.
         
         const feed = document.getElementsByClassName('feed')[0];
@@ -99,19 +95,14 @@ $(function() {
         });
 
         it('load at least one entry in the feed.', function(done) {
-            expect(feed.childElementCount).toBeGreaterThan(0);
+            expect($('.feed .entry').length).toBeGreaterThan(0);
             done();
         });
     });
 
     // Asynchronous behavior requires the use of Jasmine's nifty done() function...hey, is there an echo in here?
     describe('New Feed Selection', function() {
-        // I tried to use .map() to cycle through all the feeds, but that function
-        // doesn't handle async very well, so I gave up on it.
-        // I also tried to test it at the "click" level, but that didn't allow me
-        // to make use of the callback inside loadFeed, so I gave up on that too.
-
-        // This solution stores the state of .feed's html after 2 different feeds load,
+        // This test stores the state of .feed's html after 2 different feeds load,
         // then compares them in the expectation.
 
         let feedZero;
@@ -120,12 +111,10 @@ $(function() {
         beforeEach(function(done) {
         	loadFeed(2, function() {
             	feedTwo = $('.feed').html();
-            	done();
-            });
-
-            loadFeed(0, function() {
-            	feedZero = $('.feed').html();
-            	done();
+            	loadFeed(0, function() {
+                    feedZero = $('.feed').html();
+                    done();
+                });
             });
         });
 
