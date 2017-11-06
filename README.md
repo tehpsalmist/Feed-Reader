@@ -6,7 +6,9 @@ This web-based application reads RSS feeds. I did not write it (I believe that i
 ## Try It Out
 
 For a quick glance, [click here]() to see the live site.
-To run it locally, `git clone `
+
+To run it locally,
+1. `git clone https://github.com/tehpsalmist/Feed-Reader.git`, or download the zip file, and
+2. open `index.html` in your browser of choice.
 
 19. Implement error handling for undefined variables and out-of-bound array access.
-21. Write a README file detailing all steps required to successfully run the application. If you have added additional tests (for Udacious Test Coverage),  provide documentation for what these future features are and what the tests are checking for.
